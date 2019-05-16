@@ -1,0 +1,526 @@
+%______________________________________________________
+%
+%   LaTeX-mall för nybörjare
+%
+%   Vid funderingar titta längst ned i denna fil,
+%   eller skicka ett mail
+%______________________________________________________
+%
+
+% lite inställningar
+\documentclass[10pt, titlepage, oneside, a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[swedish]{babel}
+\usepackage{amssymb, graphicx, fancyhdr}
+\addtolength{\textheight}{20mm}
+\addtolength{\voffset}{-5mm}
+\renewcommand{\subsectionmark}[1]{\markleft{#1}{}}
+
+% Added for testing
+%\pagestyle{fancy}
+%\renewcommand{\chaptername}{}
+%\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+%\renewcommand{\subsectionmark}[1]{\markright{#1}{}}
+%
+%\fancyhf{}
+%
+%\fancyhead[L]{\leftmark}
+%\fancyhead[R]{\rightmark} % 1. sectionname
+%\fancyfoot[C]{\thepage}
+%\fancypagestyle{plain}{%
+%\fancyhf{}%
+%\renewcommand{\headrulewidth}{0pt}%
+%}
+%%%%%
+
+% \Section ger mindre spillutrymme, använd dem om du vill
+\newcommand{\Section}[1]{\section{#1}\vspace{-8pt}}
+\newcommand{\Subsection}[1]{\vspace{-4pt}\subsection{#1}\vspace{-8pt}}
+\newcommand{\Subsubsection}[1]{\vspace{-4pt}\subsubsection{#1}\vspace{-8pt}}
+
+% appendices, \appitem och \appsubitem är för bilagor
+\newcounter{appendixpage}
+
+\newenvironment{appendices}{
+\setcounter{appendixpage}{\arabic{page}}
+\stepcounter{appendixpage}
+}{
+}
+
+\newcommand{\appitem}[2]{
+\stepcounter{section}
+\addtocontents{toc}{\protect\contentsline{section}{\numberline{\Alph{section}}#1}{\arabic{appendixpage}}}
+\addtocounter{appendixpage}{#2}
+}
+
+\newcommand{\appsubitem}[2]{
+\stepcounter{subsection}
+\addtocontents{toc}{\protect\contentsline{subsection}{\numberline{\Alph{section}.\arabic{subsection}}#1}{\arabic{appendixpage}}}
+\addtocounter{appendixpage}{#2}
+}
+
+% ändra de rader som behöver ändras
+\def\inst{Teknikprogrammet}
+\def\typeofdoc{}
+\def\course{Fysik 1}
+\def\pretitle{Studieguide}
+\def\title{Fysik 1}
+\def\name{Magnus Silverdal}
+\def\username{Magnus.Silverdal}
+\def\email{\username{}@ga.ntig.se}
+\def\graders{Magnus Silverdal}
+
+
+% om du vill referera till katalogen där dina filer ligger kan du 
+% använda \fullpath som kommer att vara "~username/edu..." o.s.v.
+\def\fullpath{\raisebox{1pt}{$\scriptstyle \sim$}\username/\path}
+
+
+% Här börjar själva dokumentet
+\begin{document}
+
+    % skapar framsidan (om den inte duger: gör helt enkelt en egen)
+    \begin{titlepage}
+        \thispagestyle{empty}
+        \begin{large}
+            \begin{tabular}{@{}p{\textwidth}@{}}
+                \textbf{NTI gymnasiet \hfill \today} \\
+                \textbf{\inst} \\
+                \textbf{\typeofdoc} \\
+            \end{tabular}
+        \end{large}
+        \vspace{10mm}
+        \begin{center}
+            \LARGE{\pretitle} \\
+            \huge{\textbf{\course}}\\
+            \vspace{10mm}
+            %\LARGE{\title} \\
+            \vspace{15mm}
+            \begin{large}
+                %\begin{tabular}{ll}
+                %	\textbf{Namn} & \name \\
+                %	\textbf{E-mail} & \texttt{\email} \\
+                %	\textbf{Sökväg} & \texttt{\fullpath} \\
+                %\end{tabular}
+            \end{large}
+            \vfill
+            \large{\textbf{Handledare}}\\
+            \mbox{\large{\graders}}
+        \end{center}
+    \end{titlepage}
+
+
+    % fixar sidfot
+    \lfoot{\footnotesize{\name, \\ \email}}
+    \rfoot{\footnotesize{\today}}
+    \lhead{\sc\footnotesize\title}
+    \rhead{\nouppercase{\sc\footnotesize\leftmark}}
+    \pagestyle{fancy}
+    \renewcommand{\headrulewidth}{0.2pt}
+    \renewcommand{\footrulewidth}{0.2pt}
+
+    % skapar innehållsförteckning.
+    % Tänk på att köra latex 2ggr för att uppdatera allt
+    \pagenumbering{roman}
+    \tableofcontents
+
+    % och lägger in en sidbrytning
+    \newpage
+
+    \pagenumbering{arabic}
+
+    % i Sverige har vi normalt inget indrag vid nytt stycke
+    \setlength{\parindent}{0pt}
+    % men däremot lite mellanrum
+    \setlength{\parskip}{10pt}
+
+    % lägger in rubrik (finns \section, men då får man mycket spillutrymme)
+
+    \Section{Grundläggande matematiska kunskaper}
+    I fysik används matematik genomgående för att beskriva och förklara de fenomen som studeras. Matematiken är också det
+    färmsta verktyget för att lösa problem. Den i särklass viktigaste matematiska kunskapen, bortsett från aritmetik
+    (att kunna räkna), är algebra. Ni förvänta kunna lösa ut variabler ur uttryck i alla olika former. Exempelvis ska ni
+    kunna lösa resistanserna ur sambandet för en parallellkoppling
+    \begin{equation}
+        \frac{1}{R_{tot}} = \frac{1}{R_{1}}+\frac{1}{R_{2}}
+    \end{equation}
+    lösa ut tiden $t$ ur formeln för aktivitet (utnyttja logaritmlagarna)
+    \begin{equation}
+        N = N_0 \cdot 2^{-\frac{t}{T_{0}}}
+    \end{equation}
+    komposantuppdela en vektor med trigonometri
+    \begin{eqnarray}
+        F_x = F \cos{\alpha} \\
+        F_y = F \sin{\alpha}
+    \end{eqnarray}
+
+    eller bestämma tiden ur (lösa andragradsekvationer)
+    \begin{equation}
+        s = v_0 t + \frac{a t^2}{2}
+    \end{equation}
+    Det är ockå viktigt att kunna räkna med 10-potenser på rätt sätt och att kunna använda och förstå prefixen (de finns på
+    första sidan i formelsamlingen).
+
+    Att hantera värdesiffror rätt är ofta en del av uppgifterna. Tumregeln är enkel: Svaret ska inte ha fler värdesiffror
+    än det finns i uppgiftstexten. Det tal som har minst antal värdesiffror styr. Enda oklarheten är avslutande nollor
+    (som i 2500) enklast är att tolka det som 4 värdesiffror. Avrunda aldrig innan beräkningen är avslutad och om ett
+    tidigare uträknat svar ska användas i en annan uppgift så utgå från det icke avrundade värdet.
+
+    \Section{Laborativa kunskaper}
+    I det laborativa arbetet ska ni kunna planera, genomföra, analysera och redovisa praktiska experiment.
+    Planeringen ska vara tydlig och lätt att följa och ni ska se till att resultatet blir säkert med
+    tillräckligt många mätvärden (minst 5 för regression) och en plan för att undvika eller minimera
+    mätfel. I analysen är det viktigt att ni utreder sambandet genom att utföra regressionsanalys samt
+    att undersöka och jämföra resultatet med de teoretiska modellerna. Om sambandet mellan ström och
+    spänning är $I = k \cdot U$ måste ni se vad k är både till storlek och enhet för att kunna jämföra
+    det med det teoretiska resultatet $ I = \frac{U}{R}$. Är $k = \frac{1}{R}$? Är enheten Ohm? I
+    redovisningen är det viktigt att alla tabeller och grafer är korrekta med rätt enheter och gradering,
+    tänk också på att den beroende variabeln ska vara på y-axeln och den obereonde variabeln på x-axeln.
+    \newpage
+    \Section{Avsnitt för avsnitt}
+    \Subsection{Rörelse}
+    För att beskriva ett föremåls rörelse används position (sträcka), hastighet, acceleration och tid.
+    Definitioner och sambanden mellan dess ska ni känna till. Det är också viktigt att förstå begreppen medel- och momentan-.
+    Ett praktiskt sätt att visa en rörelse är med hjälp av ett diagram. Ni ska kunna titta på s-t-, v-t- och a-t-diagram
+    och läsa ut all den information som finns där. T.ex i ett v-t-diagram är sträckan arean under grafen (intergalen) och
+    accelerationen är lutningen på kurvan (derivatan).
+
+    Ni ska kunna lösa problem för fallet med konstant acceleration då följande samband gäller
+    \begin{eqnarray}
+        v&=&v_0 + at \\
+        s&=&v_0t + \frac{at^2}{2}
+    \end{eqnarray}
+    Ett specialfall för rörelse med konstant acceleration är fritt fall. Då är accelerationen på grund av
+    gravitationen $a=g=9.82$
+
+    \Subsubsection{Exempeluppgift}
+    En skidåkare rör sig med 7,5 m/s. När hon når en
+    nerförsbacke börjar hon accelerera med 2,3 m/s2.
+    \begin{enumerate}
+        \item{a)} Hur lång tid tar det innan hastigheten är 55 km/h?
+        \item{b)} Hur långt har skidåkaren färdats efter 3,0
+        sekunders färd nerför backen?
+        \item{c)} Hur hög hastighet har skidåkaren i slutet av
+        backen om den är 59 meter lång och vi kan anta att
+        accelerationen är konstant.
+    \end{enumerate}
+    \newpage
+    \Subsection{Kraft}
+    Newton kom fram till att det som styr en rörelse är kraft. Krafter är vektorer och behandlas matematiskt enligt
+    de regler som gäller för vektorer. Newtons tre lagar är grunden för den klassiska fysikens mekanik. En resulterande
+    kraft som inte är noll ger upphov till en acceleration. Ni ska kunna använda Newtons tre lagar, räkna med vektorer
+    och använda de krafter som beskrivs i avsnittet: tyngdkraft, normalkraft, friktionskraft, gravitationskraft och fjäderkraft.
+    \begin{eqnarray}
+        F_g&=&m g \\
+        F_N&=&m g \cos{\alpha}\\
+        F_{fr}&=&\mu F_N\\
+        F_G &=& G\frac{M m}{r^2} \\
+        F_f &=& kx
+    \end{eqnarray}
+    \Subsubsection{Exempeluppgifter}
+    \begin{enumerate}
+        \item Drömbilen Ferrari Enzo väger 1550 kg och har en motor med effekten 657 hk
+        och en maxhastighet på 350 km/h. Den accelererar från 0-200 km/h på 9,5 s
+        med en 70 kg tung förare. Inbromsningen till stillastående igen tar 4,7 s.
+        \begin{itemize}
+            \item[a)] Hur stor är medelaccelerationen?
+            \item[b)] Vilken genomsnittlig resulterande kraft verkar på föraren under
+            accelerationen?
+            \item[c)] Vilken genomsnittlig resulterande kraft verkar på föraren under
+            retardationen?
+        \end{itemize}
+        \item En pulka glider nerför en backe med lutningen 12 grader. Friktionstalet mellan
+        pulkan och snön är 0,058. Bestäm pulkans acceleration.
+    \end{enumerate}
+    \newpage
+    \Subsection{Energi och rörelsemängd}
+    \Subsubsection{Energi och arbete}
+    Ni ska känna till begreppen energi och arbete samt kunna använda kopplingen mellan kraft, arbete och energiändring
+    för att lösa problem
+    \begin{equation}
+        W = F s = \Delta E
+    \end{equation}
+    Ni ska kunna använda mekaniska energi, fördelad på rörelseenergi och lägesenergi, för att lösa problem
+    \begin{equation}
+        E = E_k + E_p = \frac{mv^2}{2} + mgh
+    \end{equation}
+    Energiprincipen säger att energin bevaras så om ingen energi omvandlas till värme via friktion så bevaras
+    den mekaniska energin.
+    \Subsubsection{Rörelsemängd}
+    När kraften verkar under en tid istället för under en sträcka, t.ex vid kollisioner, är rörelsemängd och impuls ett
+    bättre sätt att modellera vad som händer.
+    \begin{eqnarray}
+        p & = & mv \\
+        F \Delta t & = & \Delta p = mv_2 - mv_1
+    \end{eqnarray}
+    Röreslemängden är en storhet som bevaras och det gör att ni kan räkna på kollisioner där den mekaniska energin inte bevaras
+    eftersom energin i kollisionen omvandlas till värme och ljud. Beroende på kollisionens karaktär finns olika modeller. En
+    elastisk stöt är en kollision där rörelseenergin \emph{och} rörelsemängden bevaras. I en oelastisk stöt bevaras inte energin
+    och i en fullständigt oelastisk stöt fastnar föremålen i varandra och energin bevaras inte. I alla stötar bevaras rörelsemängden.
+    \Subsubsection{Exempeluppgift}
+    När Daniela kör sin Toyota Avensis i 90 km/h och
+    släpper gasen så hinner den rulla 146 m innan
+    hastigheten sjunkit till 80 km/h på plan väg.
+    \begin{itemize}
+        \item[a)] Använd denna information för att beräkna den
+        genomsnittliga bromskraften på bilen om bilen
+        väger 1,5 ton.
+        \item[b)] Skulle det ta kortare eller längre tid för
+        hastigheten att sjunka från 80 km/h ner till 70
+        km/h? Motivera ditt svar.
+    \end{itemize}
+    \newpage
+    \Subsection{Tryck}
+    Tryck är en beskrivning av hur en kraft verkar på en yta. Ni ska känna till definitionen $p=F/A$ och kunna beräkna
+    vilket tryck en kraft ger upphov till. Nu ska också kunna beräkna vätsketryck, $p = \rho g h$, och förstå vad lufttryck är.
+    Arkimedes princip beskriver vilkoret för hur trycket från en vätska ger lyftkraft på ett föremål och vad som avgör
+    om något flyter (lyftkraften är större än tyngdkraften). Även om ett föremål inte flyter gör lyftkraften från vätskan
+    ändå att den totala kraften på ett föremålet förändras, föremålet blir lättare.
+
+    I ett hydrauliskt system (i en instängd vätska) fördelas trycket jämt i vätskan och kraften kan förstärkas eller minskas
+    om cylindrarnas areor är olika.
+
+    Ideala gaslagen
+
+    \begin{equation}
+        pV = nRT
+    \end{equation}
+
+    beskriver sambandet mellan tryck, temperatur och volym. Kom ihåg att temperaturen mäts i Kelvin.
+    \subsubsection{Exempeluppgift}
+    Lufttrycket på Mars är ungefär 1 kPa. Tänk dig att man hittade vatten under ytan på Mars. Hur högt
+    skulle man kunna suga upp det?
+    \newpage
+    \Subsection{Värme}
+    Värme är en energi och temperatur är ett mått på hur värme får molekylerna i ett ämna att röra sig. En förändring i energi
+    får temperaturen att ändras enligt
+
+    \begin{equation}
+        E = c m \Delta T
+    \end{equation}
+
+    där c är den specifika värmekapaciteten för just detta ämne.
+
+    När värme tillförs eller leds bort kan det göras genom tre olika processer
+    \begin{itemize}
+        \item Ledning
+        \item Strömning
+        \item Strålning
+    \end{itemize}
+    När temperaturen når smält eller kokpunkt sker en fasövergång. Då krävs det energi för att frigöra molekylerna i ämnet
+    och värmeförändringar påverkar inte längre temperaturen. För smältning/stelning gäller $E = l_s m$ där $l_s$ är
+    smältentalpiteten och för fårångning/kondensering gäller $E = l_å m$ där $l_å$ är ångbildningsvärmen. Ni sk kunna förstå
+    och räkna på temperatur- och energiförändringar i fasövergångar och temperaturförändringar.
+
+    Ni ska också ha en grundläggande förståelse för hur tryck och temperatur driver vädersystem.
+    \subsubsection{Exempeluppgift}
+    I ett kraftvärmeverk används kallvatten för att kondensera vattenånga. Flödet är så snabbt att 15 kg vattenånga
+    kondenseras av $1.0 m^3$ kallvatten. Hur mycket varmare blir kallvattnet om ångan har temperaturen $100 ^{\circ} C$ och
+    kallvattnet har temperaturen $12 ^{\circ}C$ från början?
+    \newpage
+    \Subsection{Elektricitet}
+
+    \Subsection{Relativitetsteori}
+
+    \Subsection{Kärnfysik}
+
+
+
+
+
+
+    %\begin{figure}[htb]
+    %\includegraphics[width=0.9\textwidth]{Clock.png}
+    %        \caption{Klassdiagram över systemet}
+
+    %   \end{figure}
+
+
+
+
+    %	NumberDisplay är ansvarig för att värdet och gränserna är giltigt och för inkrementeringen. Klassen har också ansvar för att displayen visar sitt värde i rätt format.
+
+    %Clock är ansvarig för att skapa displayerna på rätt sätt, för inkrementeringen av hela klockan och för att koppla ihop minut och timdisplayernas värden så att de är giltiga. Clock ser också till att tiden visas i rätt format.
+
+    %AlarmClock ärver Clock och använder en annan klocka för att hålla reda på när alarmet ska låta. Alarmet består av tvä delar, dels en utskrift i terminalen, dels lägs strängen Alarm till i den visade tiden.
+
+    %	\Section{Testkörningar}
+    % \begin{figure}[htb]
+    %\includegraphics[width=0.9\textwidth]{test1.png}
+    %        \caption{Skärmdump av testningen av Clocks funktioner}
+
+    %   \end{figure}
+    %\begin{figure}[htb]
+    %\includegraphics[width=0.9\textwidth]{test2.png}
+    %        \caption{Skärmdump av testningen av AlarmClocks funktioner}
+
+    %   \end{figure}
+    %\begin{figure}[htb]
+    %\includegraphics[width=0.4\textwidth]{test3.png}
+    %        \caption{Skärmdump av enhetstestningen av Clock.NumberDisplay}
+
+    %   \end{figure}
+    %Alla tester går igenom med önskat resultat.
+    %
+    %	\Section{Lösningens begränsningar}
+
+    %Alarmet låter bara precis den tid då det är satt och det saknas stöd för att snooza. Alarmet signalerar inte heller på något annat sätt att det larmar än att skriva ut en sträng en gång. Ne mer trovärdig lösning hade implementerat en mer bestående signal och möjlighet att reagera på den.
+
+\end{document}
+
+
+% Lite information om hur man arbetar med LaTeX
+%-----------------------------------------------
+%
+% LaTeX-koden kan skrivas med en godtycklig editor.
+% För att "kompilera" dokumentet används kommandot latex:
+%    bergner@peppar:~/edu/sysprog/lab1> latex rapportmall.tex
+% Resultatet blir ett antal filer, bl.a. en som heter rapportmall.dvi.
+% Denna fil kan användas för att titta hur dokumentet egentligen ser
+% ut med hjälp av programmet xdvi:
+%    bergner@peppar:~/edu/sysprog/lab1> xdvi rapportmall.dvi &
+% Du får då upp ett fönster som visar ditt dokument. Detta fönster
+% kommer automatiskt att uppdateras då du ändrar och kompilerar om din
+% LaTeX-kod. 
+% När du anser att din rapport är färdig att skrivas ut använder man
+% lämpligtvis kommandona dvips och lpr:
+%    bergner@peppar:~/edu/sysprog/lab1> dvips -P ma436ps rapportmall.dvi
+% Om man vill ha kvar PostScript-filen som dvips genererar kan man göra:
+%    bergner@peppar:~/edu/sysprog/lab1> dvips -o rapport.ps rapportmall.dvi
+%    bergner@peppar:~/edu/sysprog/lab1> lpr -P ma436ps rapport.ps
+% OBS!!! För att innehållsförteckningen och eventuella referenser till
+% tabeller och figurer garanterat ska stämma måste man köra latex 2ggr
+% på sitt dokument efter att man har ändrat något.
+%
+%
+% Lite information om saker man kan tänkas behöva i sitt arbete med LaTeX
+%-------------------------------------------------------------------------
+%
+% FORMATTERA TEXT
+%
+% För att formattera text på lite olika sätt kan man använda följande LaTeX-
+% kommandon:
+%    \textbf{denna text kommer att vara i fetstil}
+%    \emph{denna text är viktig (kursiv stil)}
+%    \texttt{i denna text blir alla tecken lika breda, som med en skrivmaskin}
+%    \textsf{denna text visas med ett typsnitt utan serifer}
+%
+%
+% MATEMATISKA FORMLER
+%
+% För att typsätta matematiska formler kan man använda:
+%    $f(x) = x^2 - 3$, vilket lägger in formeln i texten, eller
+%    \begin{displaymath}
+%        g(x) = \frac{\sin x}{x}
+%    \end{displaymath}, vilket låter formeln visas centrerat på en egen rad
+% Om du vill att en formel ska numreras byter du ut displaymath mot equation.
+% Det finns massor med matematiska symboler, vilket gör att man behöver
+% någon liten manual att titta i om man ska konstruera avancerade formler.
+% Se slutet på filen för lite råd om var du kan hitta sådana.
+%
+%
+% INFOGA FIGURER
+%
+% För att infoga en figur kan man göra på följande sätt:
+%    \begin{figure}[htb]
+%        \includegraphics[scale=0.5, angle=90]{exec_flow.eps}
+%        \caption{Detta är bildtexten}
+%        \label{EXECFLOW}
+%    \end{figure}
+% Om man vill referera till denna bild i texten skulle man då skriva enligt:
+%    ...i figur \ref{EXECFLOW} kan man se att...
+% Några små förklaringar till figurer:
+%    [htb] = talar om hur latex ska försöka placera bilden (Here, Top, Bottom)
+%            Om du använder [!h], innebär det Here!!!
+%    scale = kan skala om bilden, om den är skalbar
+%    angle = kan rotera bilden
+%    exec_flow.eps = filnamnet på bilden. Notera att formatet .EPS används
+% För att skapa figurer används lämpligtvis programmet xfig:
+%    bergner@peppar:~/edu/sysprog/lab1> xfig &
+% Rita (och spara ofta) tills du är klar. Välj sedan "Export" och exportera
+% din figur till EPS-format.
+% Om man vill kan man använda endast \includegraphics, men det är inte ofta
+% man går det.
+%
+%
+% INFOGA TABELLER
+%
+% Om man vill skapa en tabell gör man på följande sätt:
+%    \begin{table}[htb]
+%        \begin{tabular}{|rlp{10cm}|}
+%            \hline
+%            13 & $17.26$ & En kommentar som kan sträcka sig över flera rader \\
+%            \hline
+%        \end{tabular}
+%        \caption{Tabelltexten...}
+%        \label{TBL:MINTABELL}
+%    \end{table}
+% Om man vill kan man endast använda raderna 2-6, dvs få en tabell utan text
+% och nummer. Om man gör på detta vis kommer tabellen alltid att läggas på
+% det ställe den skrivs i koden, dvs ungefär samma sak som [!h] -> Here!!!
+% Några förklaringar:
+%    l, r, c = vänsterjustera, högerjustera eller centrera kolumn
+%    p{bredd} = skapa en vänsterjusterad kolumn med en viss bredd
+%               kan innehålla flera rader text
+%    | = en vertikal linje i tabellen
+%    \hline = en horisontell linje i tabellen
+%    & = kolumnseparator
+%    \\ = radseparator
+% Tänk på att tabeller oftast ser bättre ut med ganska få linjer.
+%
+%
+% INFOGA KäLLKOD ELLER UTDATA FRåN TESTKöRNINGAR
+%
+% Om man vill infoga källkod eller något annat liknande, t.ex. utdata från
+% en testkörning är det bra om LaTeX återger utdatan korrekt, dvs en radbrytning
+% betyder en radbrytning och 8 mellanslag på rad betyder 8 mellanslag på rad.
+% För att åstadkomma detta används:
+%    \begin{verbatim}
+%        allt som skrivs här återges exakt, med skrivmaskinstypsnitt
+%    \end{verbatim}
+% Oftast finns det dock bättre verktyg för att skriva ut källkod. Exempel på
+% sådana är a2ps, enscript och atp.
+%
+%
+% äNDRA STORLEK På TEXT
+%
+% Om du vill ändra storleken på ett stycke, t.ex. på din nyss infogade
+% testkörning omger du stycket med \begin{STORLEK} \end{STORLEK}, där
+% STORLEK är någon av:
+%    tiny, scriptsize, footnotesize, small, normalsize, large, Large,
+%    LARGE, huge, Huge
+% Tänk på att inte mixtra för mycket med storlekar bara.
+%
+%
+% SKAPA LISTOR AV OLIKA SLAG
+%
+% Det är ganska vanligt att man vill rada upp saker på något sätt. För att
+% skapa punktlistor används:
+%    \begin{itemize}
+%        \item Detta är första punkten
+%        \item Detta är andra punkten
+%    \end{itemize}
+% Om man istället vill ha en numrerad lista kan man använda enumerate istället
+% för itemize. Listor kan användas i flera nivåer
+%
+%
+% MER INFORMATION OM LaTeX
+%
+% Lite blandad information om LaTeX, länkar och annat hittar du på
+% http://www.cs.umu.se/~bergner/latex.htm
+% En del information om rapportskrivning hittar du på
+% http://www.cs.umu.se/~bergner/rapport/
+% Det finns massor med information om LaTeX på Internet. Ett litet urval:
+% http://www.giss.nasa.gov/latex/
+%     är en mycket välfylld sida om LaTeX
+% http://wwwinfo.cern.ch/asdoc/WWW/essential/essential.html
+%     är en manual som genererats utifrån ett LaTeX-dokument mha latex2html
+% http://tex.loria.fr/english/
+%     är ett fylligt arkiv av länkar till LaTeX-dokument på Internet
+%
+% Min personliga favorit är dock manualen "The Not So Short Introduction to
+% LaTeX2e", som finns i DVI-format på ~bergner/LaTeX/lshort2e.dvi
+% Där står i princip allt man behöver veta. Det är bara att använda xdvi och
+% titta efter det du söker, vilket oftast finns där.
+% Om du, precis som jag, vill kunna leka med många kommandon i LaTeX finns en
+% "LaTeX Command Summary" på ~bergner/LaTeX/latexcmds.ps
