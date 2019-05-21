@@ -12,6 +12,8 @@
 \usepackage[T1]{fontenc}
 \usepackage[swedish]{babel}
 \usepackage{amssymb, graphicx, fancyhdr}
+\usepackage{amsmath}
+\usepackage{graphicx}
 \addtolength{\textheight}{20mm}
 \addtolength{\voffset}{-5mm}
 \renewcommand{\subsectionmark}[1]{\markleft{#1}{}}
@@ -309,7 +311,7 @@
     \end{itemize}
     När temperaturen når smält eller kokpunkt sker en fasövergång. Då krävs det energi för att frigöra molekylerna i ämnet
     och värmeförändringar påverkar inte längre temperaturen. För smältning/stelning gäller $E = l_s m$ där $l_s$ är
-    smältentalpiteten och för fårångning/kondensering gäller $E = l_å m$ där $l_å$ är ångbildningsvärmen. Ni sk kunna förstå
+    smältentalpiteten och för fårångning/kondensering gäller $E = l_a m$ där $l_a$ är ångbildningsvärmen. Ni sk kunna förstå
     och räkna på temperatur- och energiförändringar i fasövergångar och temperaturförändringar.
 
     Ni ska också ha en grundläggande förståelse för hur tryck och temperatur driver vädersystem.
@@ -319,14 +321,147 @@
     kallvattnet har temperaturen $12 ^{\circ}C$ från början?
     \newpage
     \Subsection{Elektricitet}
+    Elektriska laddningar ger upphov till en kraft som ges av
+    \begin{equation}
+        F = k \frac{Q_1 Q_2} {r^2}
+    \end{equation}
+    Denna kan användas med newtons lagar för att bestämma hur laddade partiklar rör sig. Den elektriska
+    energin
+    \begin{equation}
+        \label{elektriskenergi}
+        E = Q U
+    \end{equation}
 
+    definierar egentligen begreppet spänning men kan också användas för att lösa problem med energiresonemang.
+
+    I en koppling gäller alltid Ohms lag och Kirchhoffs lagar.
+    \begin{eqnarray}
+        U &=& R I \\
+        \sum_{i=0}^{n} I_i &=& 0, \text{summan av alla strömmar i en punkt är 0} \\
+        \sum_{i=0}^{n} U_i &=& 0, \text{summan av alla potentialändringar i en sluten krets är 0} \\
+    \end{eqnarray}
+    Ni ska också kunna utnyttja sambanden för serie och parallellkoppling
+    för att analysera en krets.
+
+    \begin{eqnarray}
+        \text{seriekoppling}
+        \begin{cases}
+            & R_{tot} = R_1 + R_2\\
+            & I = I_1+I_2\\
+        \end{cases} \\
+        \text{parallellkoppling}
+        \begin{cases}
+             & \frac{1}{R_{tot}} = \frac{1}{R_1} + \frac{1}{R_2}\\
+             & U = U_1+U_2\\
+        \end{cases}
+    \end{eqnarray}
+
+    Den elektriska effekten definieras precis som vanligt av $ P  = \frac{E}{t}$ men eftersom strömmen $I$ definieras av
+    $I = \frac{Q}{t}$ och energin ges av ekvation \ref{elektriskenergi} kan den elektriska effekten skrivas som
+    \begin{equation}
+        P = U I \text{ eller } P = R I^2
+    \end{equation}
+
+    På samma sätt som gravitationskraften ger upphov till ett kraftfält, gravitatiosfältet, ger den elektriska kraften
+    upphov till ett elektrisk fält $E = \frac{F}{Q}$. Om fältet är homogent (t.ex. fältet mellan två plattor när en spänning
+    läggs över dem) kan fältet beräknas med $E = \frac{U}{d}$ där $d$ är avståndet mellan plattorna.
+    \newpage
+    \Subsubsection{Exempeluppgifter}
+    \begin{enumerate}
+        \item Bestäm den okända resistansen och beräkna kretsens totala effektutveckling.
+        \begin{figure}[h]
+            \includegraphics[width=0.9\textwidth]{Kopplingsschema.png}
+            \caption{Kopplingsschema}
+        \end{figure}
+        \item I en gammal TV sänds elektroner från en
+        elektronkanon mot skärmen. Vilken hastighet har
+        elektronerna när de når skärmen om
+        accelerationsspänningen är 10 kV?
+    \end{enumerate}
+
+    \newpage
     \Subsection{Relativitetsteori}
+    När två referenssystem rör sig realtivt varandra och hastigheten är stor (mer än 10 \% av ljushastigheten) kommer
+    relativistiska effekter påverka hur tid och avstånds uppfattas. Gammafaktorn
 
+    \begin{equation}
+         \gamma = \frac{1}{\sqrt{1-\frac{v^2}{c^2}}}
+    \end{equation}
+
+    bestämmer hur stor förändringen blir. För att skilja den som observerar från det som mäts används index 0 på det som rör sig.
+    om en observatör mäter hur lång tid något tar i ett flygplan som rör sig med hastigheten $v$ mäter observatören $t$ och $t_0$
+    är tiden som någon som åker med flygplanet. Sambandet ges av $t = \gamma t_0$. För längd gäller istället $l = frac{l_{0}}{\gamma}$
+
+    Även energi påverkas av relativistiska effekter. Den totala energin ges av $E_{tot} = \gamma m c^2$. Rörelseenergin är skillnaden mellan
+    den totala energin och viloenergon $E_0 = mc^2$
+
+    \begin{equation}
+        E_k = E_{tot} - E_{0}
+    \end{equation}
+
+    \Subsubsection{Exempeluppgift}
+    Stjärnan Gliese 581 har tre planeter runt sig. Avståndet dit är 20
+    ljusår. Vi tänker oss att en astronaut åker dit och tillbaka med 80 %
+    av ljushastigheten. Astronautens tvilling stannar kvar på jorden.
+    \begin{itemize}
+        \item[a)] Vilken av $l$ eller $l_0$ är 20 ljusår?
+        \item[b)] Vem mäter $t$, $t_0$, $l$ respektive $l_0$?
+        \item[c)] Hur lång tid tar det för astronauten att åka dit?
+        \item[d)] Hur lång sträcka har astronauten då åkt?
+        \item[e)] Hur mycket äldre än astronauten är astronautens tvilling vid hemkomsten?
+    \end{itemize}
+    \newpage
     \Subsection{Kärnfysik}
+    Elektromagnetisk strålning är energi som överförs av fotoner. Beroende på våglängd eller frekvens kan det vara värme,
+    ljus, radiosignaler eller gammastrålning. Sambandet mellan våglängd, frekvens och ljusets hastighet är $\lambda f = c$
+    och enrgin hos en foton ges av $E = h f$ där h är Plancks konstant.
 
+    Grundämnen förekommer i olika isotoper. Skillnaden mellan två olika isotoper är hur många neutroner som finns i kärnan.
+    För isotopen av kol som innehåller 8 neutroner och 6 protoner kan skrivas antingen som C-14 eller ${}_{\phantom6}^{14}C$
+    Om en atomkärna är instabil kan den sönderfalla på olika sätt för att minska sin energi. Vilket sönderfall som en given
+    isotop genomgår står i formelsamlingen. Ni ska kunna skilja mellan de olika kärnreaktionerna alfa- och beta-sönderfall,
+    fission, fussion samt nukleonemission.
+    \begin{eqnarray}
+        \alpha &:& {}_{A}^{Z}X \to  {}_{2}^{4}He + {}_{A-2}^{Z-4}Y + \text{energi}\\
+        \beta^+ &:& {}_{A}^{Z}X \to {}_{A-1}^{Z}Y + {}_{1}^{0}e + \nu_e + \text{energi}\\
+        \beta^- &:& {}_{A}^{Z}X \to {}_{A+1}^{Z}Y + {}_{-1}^{0}e + \bar{\nu_e} + \text{energi}\\
+        \text{fission} &:& {}_{A}^{Z}X \to {}_{A_y}^{Z_y}Y + {}_{A - A_y}^{Z - Z_y}Z + \text{energi}\\
+        \text{fussion} &:& {}_{A_x}^{Z_x}X + {}_{A_y}^{Z_y}Y \to {}_{A_x+A_y}^{Z_x+Z_y}Z +\text{energi}
+    \end{eqnarray}
 
+    Nukleonemmission innebär att protoner eller neutroner kastas ut från kärnan. Det kan också hända vid fissonsreaktioner
+    (t.ex kastar uran-235 ut 3 neutroner när det sönderfaller i barium och krypton). Fortfarande måste laddning och antal
+    kärnpartiklar bevaras på höger och vänster sida av reaktionen.
 
+    Hur snabbt en atomkärna sönderfaller bestäms av sönderfallskonstanten eller halveringstiden och dessa finns också i tabellerna.
+    Aktivitet är hur många sönderfall som sker per sekund i ett prov (en viss mängd av ett ämne). När atomkärnorna sönderfaller
+    minskar antalet atomer exponentiellt. Då avtar också aktiviteten eftersom det finns förre atomer som kan sönderfalla.
 
+    \begin{eqnarray}
+        A &=& A_0 e^{\lambda t} = A_0 \left(\frac{1}{2}\right) ^{-\frac{t}{T_{1/2}}} \\
+        N &=& N_0 e^{\lambda t} = N_0 \left(\frac{1}{2}\right)^{-\frac{t}{T_{1/2}}}
+    \end{eqnarray}
+    Veta sambanden för aktivitet, halveringstid och
+    sönderfallskonstant.
+    Veta vad som händer när strålning möter materia.
+
+    \Subsubsection{Exempeluppgift}
+    \begin{enumerate}
+    \item Plutonium-241 kan sönderfalla både med $\alpha$- och $\beta^+$-sönderfall. Skriv
+    sönderfallsformeln och beräkna hur stor energi som frigörs vid respektive
+    sönderfall.
+
+    \item Tumörer omsätter mer glukos än andra celler i kroppen eftersom de arbetar
+    hårt med att skapa nya celler. Det kräver mycket energi. Genom att fästa den
+    radioaktiva isotopen F-18 på en glukosmolekyl, så kallat FDG (Fluoro Deoxy
+    Glucose), har man ett spårämne som söker sig till tumörer. F-18 genomgår
+    $\beta^+$-sönderfall.
+    \begin{itemize}
+        \item[a)] Skriv reaktionsformeln.
+        \item[b)] Beräkna den energi som frigörs.
+        \item[c)] Hur många procent av ämnet finns kvar efter 1 dygn?
+        \item[d)] Preparatet har från början aktiviteten 1,2 MBq. Hur många F-18 innehåller preparatet?
+    \end{itemize}
 
 
     %\begin{figure}[htb]
