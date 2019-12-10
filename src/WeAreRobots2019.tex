@@ -1,0 +1,73 @@
+%%
+%% Author: magnus.silverdal
+%% 2019-10-04
+%%
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+
+%data
+\title{We Are Robots}
+\author{Magnus Silverdal}
+\def\inst{Teknikprogrammet}
+\def\typeofdoc{}
+\def\course{Programmering 2}
+\def\name{Magnus Silverdal}
+\def\username{Magnus.Silverdal}
+\def\email{\username{}@ga.ntig.se}
+\def\graders{Magnus Silverdal}
+
+%Sidhuvud och sidfot
+\lfoot{\footnotesize{\name, \\ \email}}
+\rfoot{\footnotesize{\today}}
+\lhead{\sc\footnotesize\title}
+\rhead{\nouppercase{\sc\footnotesize\leftmark}}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.2pt}
+\renewcommand{\footrulewidth}{0.2pt}
+
+% Document
+\begin{document}
+    \maketitle
+    \newpage
+    \section{Beskrivning av uppgiften}
+    Er uppgift är att skapa en simulering av en robotvärld. Världen befolkas av två typer av robotar, ljusälskare och ljushatare.
+    Robotarna behöver också mat och vatten för att fungera. I världen finns lampor som sprider ljus och mat och vattenstationer
+    där robotarna kan fylla på sina energiresurser. Världen har en fix storlek, x*y och kan antingen visualiseras som ASCII-art
+    eller med pixelgrafik. (se exemplen från game of life).  Här är ett exempel med ASCII:
+    R är robotar, L är ljuskällor, M och V är mat och vatten. Om ni vill kan ni också tillåta väggar (X) i er värld, ni måste
+    åtminstone ha väggar runt den så att robotarna inte rymmer.
+    \begin{verbatim}
+    xxxxxxxxxxxxxxxxxxxx
+    x R                x
+    x    L   M         x
+    x V                x
+    x              R   x
+    xxxxxxxxxxxxxxxxxxxx
+    \end{verbatim}
+    I varje steg av simuleringen rör sig robotarna, och tappar lite energi. De rör sig mot/bort från ljus och allt eftersom
+    de tappar energi blir de hungrigare och mer villiga att bortse från ljus och mörker för att hitta energi.
+
+    Skapa ett system av klasser med klassdiagram för att genomföra och visualisera simuleringen. Tänk på att alla föremål i
+    världen delar en hel del egenskaper och att det kan utnyttjas när ni skapar klassdiagrammet.
+
+    Implementera sedan klassdiagrammet i ett program.
+
+    DEtta program
+    \section{Genomförande}
+    \subsection{Klassdiagram och systembeskriving}
+    Första delen i detta projekt blir att analysera problemet och skapa ett klassdiagram för er lösning. Detta gör ni i grupp.
+    Prata först igenom problemet och fundera om ni förstått hur allt ska fungera. Använd denna kunskap för att bygga upp ett
+    fullständigt klassdiagram över lösningen. Ni behöver också förtydliga vad varje metod i klasserna ska göra i en systembeskrivning.
+    Börja med att skissa på tavlan. När ni tror att ni har fått till något som fungerar ska ni koppla upp er prå projektorn
+    och föra över klassdiagrammet till DIA.
+    \subsection{Implementation och dokumentation}
+    Därefter delas ni in i mindre grupper där ni ska implemenetera era klassdiagram. Bygg upp ett projekt i IntelliJ,
+    lägg upp det på Github och bygg klass för klass. Se till att ni kan testa
+
+\end{document}
